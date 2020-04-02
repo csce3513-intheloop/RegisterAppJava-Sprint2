@@ -1,0 +1,49 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Register - Transaction</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<link rel="stylesheet" type="text/css" href="/styles/master.css">
+
+	<script type="text/javascript" src="/scripts/master.js" defer></script>
+	<script type="text/javascript" src="/scripts/transaction.js" defer></script>
+</head>
+
+<body>
+
+	<div class="header">
+		<h1 class="primary-message">Transaction</h1>
+	</div>
+		
+	<div id="main" class="main">
+		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+		</div>
+
+		<div class="transactionlWrapper">
+			<table id="transaction">
+				<tbody>
+					<tr class="hidden">
+						<td>
+							<input id="productId" type="hidden" th:value="${!product.isEmpty} ? ${product.id} : ''" />
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Lookup Code:</td>
+						<td>
+							<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" th:disabled="not ${isElevatedUser}" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="footer">
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+	</div>
+		
+</body>
+
+</html>
