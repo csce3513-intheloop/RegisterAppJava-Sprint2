@@ -10,9 +10,13 @@ import edu.uark.registerapp.models.entities.TransactionEntity;
 import edu.uark.registerapp.models.entities.TransactionEntryEntity;
 import edu.uark.registerapp.models.entities.ProductEntity;
 
-public class Transation extends ApiResponse {
+public class Transaction extends ApiResponse {
     private UUID id;
 	public UUID getId() {
 		return this.id;
-	} 
+    } 
+    public Transaction setId(final UUID id) {
+		this.id = id;
+		return this;
+	}
 }
