@@ -37,14 +37,14 @@ public class TransactionCreateCommand implements VoidCommandInterface {
 					.setQuantity(purchasedQuantity));
 		}
 
-		this.createDummyTransaction(
+		this.createTransaction(
 			transactionEntryEntities,
 			transactionTotal);
 	}
 
 	// Helper methods
 	@Transactional
-	private void createDummyTransaction(
+	private void createTransaction(
 		final List<TransactionEntryEntity> transactionEntryEntities,
 		final long transactionTotal
 	) {
