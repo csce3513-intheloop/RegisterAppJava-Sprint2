@@ -29,21 +29,7 @@ Java, web-based product listing
     Example: Together, multiple route handlers within a controller represent a significant contribution
     Etc...
     Example: By itself, a few lines of code here or there – like an IF statement or simple loop – does not represent a significant contribution
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-The following bullets are not directly related to Sprint 4. These bullet points indicate how transaction, shopping cart, functionality will be graded in Sprint 5. This information is provided merely as a reference.
 
-  Can search for a product by its lookup code
-    (Supports partial search)
-  Can add searched for product to transaction
-  Can adjust quantity of products in transaction/cart
-  Can remove product from transaction/cart
-  Transaction summary display
-    Display each product in the transaction/cart along with its quantity and price
-    Display total product count for the transaction/cart
-    Display total price for the transaction/cart
-  Upon completing the transaction/cart, details are persisted to the database
-    (Doesn't have to be accomplished at the end of the transaction)
-  Can cancel a transaction
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Reminders on how to push and pull from command line
