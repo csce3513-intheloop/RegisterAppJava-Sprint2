@@ -21,24 +21,42 @@
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
 
-		<div class="transactionlWrapper">
-			<table id="transaction">
-				<tbody>
-					<tr class="hidden">
-						<td>
-							<!--input id="productId" type="hidden" th:value="${!product.isEmpty} ? ${product.id} : ''" /-->
-						</td>
-					</tr>
-					<tr>
-						<td class="label">Lookup Code:</td>
-						<td>
-							<!--input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" th:disabled="not ${isElevatedUser}" /-->
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+		<div id='searchArea'>
+            <h4>Product Lookup Code</h4>
+            <input id='searchFor' type='text' size='36'><br><br>
+            <button id='searchBtn' class='btn'>Search</button><br><br>
+
+            <textarea id="returned" rows='6' cols='64' style="visibility: visible">returned search results...</textarea><br><br>
+            <button id="add" class='btn' style="visibility: visible">Add</button><br><br>
+        </div>
+        <div id="addedProducts">
+            <table id='product' type="table" style="width:60%;background-color: rgb(200, 200, 200);"> 
+                <tr style="height: 30px;">
+                    <td><input id='quantity1' type='text' size='2'></td>
+                    <td style='text-align:center'><div>Product1</div></td>
+                    <td style='text-align:center'><div>Price1</div></td>
+                    <td style='text-align:right'><button>remove</button></td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td><input id='quantity1' type='text' size='2'></td>
+                    <td style='text-align:center'><div>Product2</div></td>
+                    <td style='text-align:center'><div>Price2</div></td>
+                    <td style='text-align:right'><button id='searchBtn'>remove</button></td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td><input id='quantity1' type='text' size='2'></td>
+                    <td style='text-align:center'><div>Product3</div></td>
+                    <td style='text-align:center'><div>Price3</div></td>
+                    <td style='text-align:right;'><button>remove</button></td>
+                </tr>
+            </table><br><br>
+            <button id='searchBtn' class='btn'>Submit</button>
+            <button id='searchBtn' class='btn'>Cancel</button>
+
+            </div>
+        </div>
+        </div>
+    </div>
 
 	<div class="footer">
 		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
