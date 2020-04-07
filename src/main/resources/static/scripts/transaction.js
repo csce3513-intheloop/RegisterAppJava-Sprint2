@@ -1,11 +1,27 @@
-/*
-TODO: Add functionality to search
-    <div id='searchArea'>
-            <h4>Product Lookup Code</h4>
-            <input id='searchFor' type='text' size='36'><br><br>
-            <button id='searchBtn' class='btn'>Search</button><br><br>
+document.addEventListener("DOMContentLoaded", function(event) {
+	document.getElementById("lookupCode").addEventListener("keypress", validateForm);
+});
 
-            <textarea id="returned" rows='6' cols='64' style="visibility: visible">returned search results...</textarea><br><br>
-            <button id="add" class='btn' style="visibility: visible">Add</button><br><br>
-        </div> 
-*/
+function validateForm() {
+    var lookupCode = document.forms["Search"]["lookupCode"].value;
+    	
+	if (lookupCode == "") {
+		document.getElementById("msg").innerHTML = "The lookup code field must not be empty.";
+		return false;
+
+	}
+
+	return true;
+}
+
+// Getters and setters
+function getlookupCode() {
+	return document.getElementById("lookupCode");
+}
+function setlookupCode(lookupCode) {
+	getElementById().value = lookupCode;
+}
+function getlookupCode() {
+	return getElementById().value;
+}
+// End getters and setters

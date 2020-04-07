@@ -22,9 +22,18 @@
 		</div>
 
 		<div id='searchArea'>
-            <h4>Product Lookup Code</h4>
-            <input id='searchFor' type='text' size='36'><br><br>
-            <button id='searchBtn' class='btn'>Search</button><br><br>
+
+			<h4>Product Lookup Code</h4>
+			<form action="/" method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">
+                <div>
+                    <input id="lookupCode" type="text" name="lookupCode" placeholder="Lookup Code" class="update" th:value="${lookupCode}" />
+                </div> 
+                <div></div>   
+                    <input type="submit" value="Search" class="submit" />
+                </div>
+				<div style="color:red" id="msg"></div>
+				</tr>
+			</form><br>
 
             <textarea id="returned" rows='6' cols='64' style="visibility: visible">returned search results...</textarea><br><br>
             <button id="add" class='btn' style="visibility: visible">Add</button><br><br>
