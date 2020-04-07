@@ -1,26 +1,27 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-	<title>Register - Transaction</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>Register - Transaction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" href="/styles/master.css">
+    <link rel="stylesheet" type="text/css" href="/styles/master.css">
 
-	<script type="text/javascript" src="/scripts/master.js" defer></script>
-	<script type="text/javascript" src="/scripts/transaction.js" defer></script>
+    <script type="text/javascript" src="/scripts/master.js" defer></script>
+    <script type="text/javascript" src="/scripts/transaction.js" defer></script>
 </head>
 
 <body>
 
-	<div class="header">
-		<h1 class="primary-message">Transaction</h1>
-	</div>
-		
-	<div id="main" class="main">
-		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
-			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
-		</div>
+    <div class="header">
+        <h1 class="primary-message">Transaction</h1>
+    </div>
 
+    <div id="main" class="main">
+        <div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+            <h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+        </div>
+
+<<<<<<< HEAD
 		<div id='searchArea'>
 
 			<h4>Product Lookup Code</h4>
@@ -34,43 +35,61 @@
 				<div style="color:red" id="msg"></div>
 				</tr>
 			</form><br>
+=======
+        <div id='searchArea'>
+            <h4>Product Lookup Code</h4>
+            <input id='searchFor' type='text' size='36'><br><br>
+            <button id='searchBtn' class='btn'>Search</button><br><br>
+>>>>>>> 8f5b88b1e5f213d6ab1d50346713a5ce84b1cc0b
 
             <textarea id="returned" rows='6' cols='64' style="visibility: visible">returned search results...</textarea><br><br>
             <button id="add" class='btn' style="visibility: visible">Add</button><br><br>
         </div>
         <div id="addedProducts">
-            <table id='product' type="table" style="width:60%;background-color: rgb(200, 200, 200);"> 
+            <table id='product' type="table" style="width:60%;background-color: rgb(200, 200, 200);">
                 <tr style="height: 30px;">
                     <td><input id='quantity1' type='text' size='2'></td>
-                    <td style='text-align:center'><div>Product1</div></td>
-                    <td style='text-align:center'><div>Price1</div></td>
+                    <td style='text-align:center'>
+                        <div>Product1</div>
+                    </td>
+                    <td style='text-align:center'>
+                        <div>Price1</div>
+                    </td>
                     <td style='text-align:right'><button>remove</button></td>
                 </tr>
                 <tr style="height: 30px;">
                     <td><input id='quantity1' type='text' size='2'></td>
-                    <td style='text-align:center'><div>Product2</div></td>
-                    <td style='text-align:center'><div>Price2</div></td>
+                    <td style='text-align:center'>
+                        <div>Product2</div>
+                    </td>
+                    <td style='text-align:center'>
+                        <div>Price2</div>
+                    </td>
                     <td style='text-align:right'><button id='searchBtn'>remove</button></td>
                 </tr>
                 <tr style="height: 30px;">
                     <td><input id='quantity1' type='text' size='2'></td>
-                    <td style='text-align:center'><div>Product3</div></td>
-                    <td style='text-align:center'><div>Price3</div></td>
+                    <td style='text-align:center'>
+                        <div>Product3</div>
+                    </td>
+                    <td style='text-align:center'>
+                        <div>Price3</div>
+                    </td>
                     <td style='text-align:right;'><button>remove</button></td>
                 </tr>
             </table><br><br>
             <button id='searchBtn' class='btn'>Submit</button>
-            <button id='searchBtn' class='btn'>Cancel</button>
+            <button id='searchBtn' class='btn'>Cancel Transaction</button>
 
-            </div>
-        </div>
         </div>
     </div>
+    </div>
+    </div>
 
-	<div class="footer">
-		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
-	</div>
-		
+    <div class="footer">
+        <img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+    </div>
+
 </body>
 
 </html>
