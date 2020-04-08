@@ -21,26 +21,14 @@
             <h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
         </div>
 
-<<<<<<< HEAD
 		<div id='searchArea'>
 
 			<h4>Product Lookup Code</h4>
-			<form action="/" method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">
-                <div>
-                    <input id="lookupCode" type="text" name="lookupCode" placeholder="Lookup Code" class="update" th:value="${lookupCode}" />
-                </div> 
-                <div></div>   
-                    <input type="submit" value="Search" class="submit" />
-                </div>
-				<div style="color:red" id="msg"></div>
-				</tr>
+			<form action="/" method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">               
+                <input id="lookupCode" type="text" name="lookupCode" placeholder="Lookup Code" th:value="${lookupCode}" >
+                <input id ="searchBtn" type="submit" value="Search" >           
+				<div style="color:red" id="msg"></div>				
 			</form><br>
-=======
-        <div id='searchArea'>
-            <h4>Product Lookup Code</h4>
-            <input id='searchFor' type='text' size='36'><br><br>
-            <button id='searchBtn' class='btn'>Search</button><br><br>
->>>>>>> 8f5b88b1e5f213d6ab1d50346713a5ce84b1cc0b
 
             <textarea id="returned" rows='6' cols='64' style="visibility: visible">returned search results...</textarea><br><br>
             <button id="add" class='btn' style="visibility: visible">Add</button><br><br>
