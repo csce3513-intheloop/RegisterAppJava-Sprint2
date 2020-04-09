@@ -20,6 +20,7 @@
             <h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
         </div>
         <div id='searchArea'>
+<<<<<<< HEAD
 			<h4>Product Lookup Code</h4>
 			<form action="transaction" method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">               
                 <input id="lookupCode" type="text" name="lookupCode" placeholder="Lookup Code" th:value="${lookupCode}" >
@@ -33,6 +34,32 @@
 					<span class="productLookupCodeDisplay" th:text="${searchResults.lookupCode}">lookupCode</span>
 				</li>
 			</ul>
+=======
+            <!-- <h4>Product Lookup Code</h4>
+            <input id='searchFor' type='text' size='36'><br><br>
+            <button id='searchBtn' class='btn'>Search</button><br><br> -->
+
+            <h4>Product Lookup Code</h4>
+            <form action="transaction" method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">
+                <input id="lookupCode" type="text" name="lookupCode" placeholder="Lookup Code" th:value="${lookupCode}">
+                <input id="searchBtn" type="submit" value="Search">
+                <div style="color:red" id="msg"></div>
+            </form><br>
+            <!--table class = "returnProduct">               
+                <tr th:each="product : ${returnList}">
+                    <td th:text="${product.lookup}">lookup</td>
+                </tr>
+            </table-->
+            <div class="createList">
+                <ul id="createProductList" class="lookupCode">
+                    <li>
+                        <span class="productLookupCodeDisplay" th:text="${lookupCode}">LookupCode</span>
+                    </li>
+                </ul>
+            </div>
+
+            <button id="add" class='btn' style="visibility: visible">Add</button><br><br>
+>>>>>>> 18ab871740a8396de8c909ac0ca72e6f0793d4a8
         </div>
 
         <div id="addedProducts">
@@ -68,8 +95,15 @@
                     <td style='text-align:right;'><button>remove</button></td>
                 </tr>
             </table><br><br>
+<<<<<<< HEAD
             <a class='button'>Submit</a>
             <a href="/mainMenu/" class='button'>Cancel Transaction</a>
+=======
+            <!-- <button id='searchBtn' class='btn'>Submit</button> -->
+            <a class="button">submit</a>
+            <!-- <button id='searchBtn' class='btn'>Cancel Transaction</button> -->
+            <a href="/mainMenu/" class="button">Cancel Transaction</a>
+>>>>>>> 18ab871740a8396de8c909ac0ca72e6f0793d4a8
 
         </div>
     </div>
