@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	document.getElementById("searchBtn").addEventListener("click", validateForm);
 	if(!isEmpty){
 		document.getElementById("searchBtn").addEventListener("click", searchActionClick);
+		//document.getElementById("searchBtn").addEventListener("click", createProductList);
+	}
+	for (let i = 0; i < productListElements.length; i++) {
 		document.getElementById("searchBtn").addEventListener("click", createProductList);
 	}
-// 	for (let i = 0; i < productListElements.length; i++) {
-// 		productListElements[i].addEventListener("click", productClick);
-// 	}
 });
 
 function validateForm() {
