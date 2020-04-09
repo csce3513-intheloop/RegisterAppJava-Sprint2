@@ -1,27 +1,26 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-	<title>Register - Transaction</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>Employee - Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" href="/styles/master.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/master.css">
+    <link rel="stylesheet" type="text/css" href="mainMenu.css">
 
-	<script type="text/javascript" src="/scripts/master.js" defer></script>
-	<script type="text/javascript" src="/scripts/transaction.js" defer></script>
+    <script type="text/javascript" src="static/scripts/master.js" defer></script>
+    <script type="text/javascript" src="static/scripts/employeeDetail.js" defer></script>
 </head>
 
 <body>
+    <div class="header">
+        <h1 class="primary-message">New Transaction</h1>
+    </div>
 
-	<div class="header">
-		<h1 class="primary-message">Transaction</h1>
-	</div>
-		
-	<div id="main" class="main">
-		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
-			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
-		</div>
-
-		<div id='searchArea'>
+    <div id="main" class="main">
+        <div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+            <h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+        </div>
+        <div id='searchArea'>
             <h4>Product Lookup Code</h4>
             <input id='searchFor' type='text' size='36'><br><br>
             <button id='searchBtn' class='btn'>Search</button><br><br>
@@ -30,7 +29,7 @@
             <button id="add" class='btn' style="visibility: visible">Add</button><br><br>
         </div>
         <div id="addedProducts">
-            <table id='product' type="table" style="width:60%;background-color: rgb(200, 200, 200);"> 
+            <table id='product' type="table" style="width:60%;background-color: rgb(44, 18, 49);"> 
                 <tr style="height: 30px;">
                     <td><input id='quantity1' type='text' size='2'></td>
                     <td style='text-align:center'><div>Product1</div></td>
@@ -57,11 +56,12 @@
         </div>
         </div>
     </div>
-
 	<div class="footer">
-		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
-	</div>
-		
+        <form action="signIn.html">
+            <button type="submit" id="signOut" class="btn signout">Sign Out</button>
+        </form>
+    </div>
+
 </body>
 
 </html>
