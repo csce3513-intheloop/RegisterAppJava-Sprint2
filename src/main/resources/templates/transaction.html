@@ -24,19 +24,28 @@
 		<div id='searchArea'>
 
 			<h4>Product Lookup Code</h4>
-			<form action="/" method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">               
+			<form action="transaction" method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">               
                 <input id="lookupCode" type="text" name="lookupCode" placeholder="Lookup Code" th:value="${lookupCode}" >
                 <input id ="searchBtn" type="submit" value="Search" >           
 				<div style="color:red" id="msg"></div>				
 			</form><br>
-
-            <textarea id="returned" rows='6' cols='64' style="visibility: visible">returned search results...</textarea><br><br>
+            <table class = "returnProduct">               
+                <tr th:each="product : ${returnList}">
+                    <td th:text="${product.lookup}">lookup</td>
+                </tr>
+            </table>
+            <!--ul id="returnlookup" class="lookupCode">
+				<li th:each="product : ${returnList}">
+					<input type="hidden" name="lookupCode" th:value="${lookupCode}" />
+					<span class="productLookupCodeDisplay" th:text="${lookupCode}">lookupCode</span>
+				</li>
+			</ul-->
             <button id="add" class='btn' style="visibility: visible">Add</button><br><br>
         </div>
         <div id="addedProducts">
             <table id='product' type="table" style="width:60%;background-color: rgb(200, 200, 200);">
                 <tr style="height: 30px;">
-                    <td><input id='quantity1' type='text' size='2'></td>
+                    <td><input id='quantity0' type='text' name=quantity0 size='2'></td>
                     <td style='text-align:center'>
                         <div>Product1</div>
                     </td>
@@ -56,7 +65,7 @@
                     <td style='text-align:right'><button id='searchBtn'>remove</button></td>
                 </tr>
                 <tr style="height: 30px;">
-                    <td><input id='quantity1' type='text' size='2'></td>
+                    <td><input id='quantity2' type='text' size='2'></td>
                     <td style='text-align:center'>
                         <div>Product3</div>
                     </td>
