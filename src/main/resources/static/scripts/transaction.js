@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 	document.getElementById("searchBtn").addEventListener("click", validateForm);
-	
+	document.getElementById("searchBtn").addEventListener("click", searchActionClick);
 });
 
 function validateForm() {
@@ -15,3 +15,29 @@ function validateForm() {
 	return true;
 }
 
+function searchActionClick(event) {
+	const searchActionElement = event.target;
+	searchActionElement.disabled = true;
+	const searchActionUrl = ("/api/transaction/?lookupCode=" + getLookupCode());
+	
+	if (getLookupCode() != null){
+		ajaxGet(searchActionUrl, (callbackResponse) => {
+			searchActionElement.disabled = false;
+
+			if (isSuccessResponse(callbackResponse)) {
+				window.location.replace("/transaction");
+			}
+		});
+	}
+};
+
+// Getters and setters
+function getLookupCode() {
+	return getLookupCodeElement().value;
+}
+function setLookupCode(lookupCode) {
+	getLookupCodeElement().value = lookupCode;
+}
+function getLookupCodeElement() {
+	return document.getElementById("lookupCode");
+}
