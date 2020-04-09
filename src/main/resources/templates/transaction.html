@@ -1,14 +1,13 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-    <title>Employee - Details</title>
+    <title>Register - Transaction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="static/styles/master.css">
-    <link rel="stylesheet" type="text/css" href="mainMenu.css">
+    <link rel="stylesheet" type="text/css" href="/styles/master.css">
 
-    <script type="text/javascript" src="static/scripts/master.js" defer></script>
-    <script type="text/javascript" src="static/scripts/employeeDetail.js" defer></script>
+    <script type="text/javascript" src="/scripts/master.js" defer></script>
+    <script type="text/javascript" src="/scripts/transaction.js" defer></script>
 </head>
 
 <body>
@@ -25,41 +24,69 @@
             <input id='searchFor' type='text' size='36'><br><br>
             <button id='searchBtn' class='btn'>Search</button><br><br>
 
-            <textarea id="returned" rows='6' cols='64' style="visibility: visible">returned search results...</textarea><br><br>
+			<h4>Product Lookup Code</h4>
+			<form action="transaction" method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">               
+                <input id="lookupCode" type="text" name="lookupCode" placeholder="Lookup Code" th:value="${lookupCode}" >
+                <input id ="searchBtn" type="submit" value="Search" >           
+				<div style="color:red" id="msg"></div>				
+			</form><br>
+            <table class = "returnProduct">               
+                <tr th:each="product : ${returnList}">
+                    <td th:text="${product.lookup}">lookup</td>
+                </tr>
+            </table>
+            <!--ul id="returnlookup" class="lookupCode">
+				<li th:each="product : ${returnList}">
+					<input type="hidden" name="lookupCode" th:value="${lookupCode}" />
+					<span class="productLookupCodeDisplay" th:text="${lookupCode}">lookupCode</span>
+				</li>
+			</ul-->
             <button id="add" class='btn' style="visibility: visible">Add</button><br><br>
         </div>
         <div id="addedProducts">
-            <table id='product' type="table" style="width:60%;background-color: rgb(44, 18, 49);"> 
+
+            <table id='product' type="table" style="width:60%;background-color: rgb(200, 200, 200);">
                 <tr style="height: 30px;">
-                    <td><input id='quantity1' type='text' size='2'></td>
-                    <td style='text-align:center'><div>Product1</div></td>
-                    <td style='text-align:center'><div>Price1</div></td>
+                    <td><input id='quantity0' type='text' name=quantity0 size='2'></td>
+                    <td style='text-align:center'>
+                        <div>Product1</div>
+                    </td>
+                    <td style='text-align:center'>
+                        <div>Price1</div>
+                    </td>
                     <td style='text-align:right'><button>remove</button></td>
                 </tr>
                 <tr style="height: 30px;">
                     <td><input id='quantity1' type='text' size='2'></td>
-                    <td style='text-align:center'><div>Product2</div></td>
-                    <td style='text-align:center'><div>Price2</div></td>
+                    <td style='text-align:center'>
+                        <div>Product2</div>
+                    </td>
+                    <td style='text-align:center'>
+                        <div>Price2</div>
+                    </td>
                     <td style='text-align:right'><button id='searchBtn'>remove</button></td>
                 </tr>
                 <tr style="height: 30px;">
-                    <td><input id='quantity1' type='text' size='2'></td>
-                    <td style='text-align:center'><div>Product3</div></td>
-                    <td style='text-align:center'><div>Price3</div></td>
+                    <td><input id='quantity2' type='text' size='2'></td>
+                    <td style='text-align:center'>
+                        <div>Product3</div>
+                    </td>
+                    <td style='text-align:center'>
+                        <div>Price3</div>
+                    </td>
                     <td style='text-align:right;'><button>remove</button></td>
                 </tr>
             </table><br><br>
             <button id='searchBtn' class='btn'>Submit</button>
-            <button id='searchBtn' class='btn'>Cancel</button>
+            <button id='searchBtn' class='btn'>Cancel Transaction</button>
 
-            </div>
-        </div>
         </div>
     </div>
-	<div class="footer">
-        <form action="signIn.html">
-            <button type="submit" id="signOut" class="btn signout">Sign Out</button>
-        </form>
+    </div>
+    </div>
+
+    <div class="footer">
+        <img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
     </div>
 
 </body>
