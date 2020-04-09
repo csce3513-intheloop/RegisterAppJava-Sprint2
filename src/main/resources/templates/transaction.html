@@ -21,15 +21,15 @@
             <h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
         </div>
 
-		<div id='searchArea'>
+        <div id='searchArea'>
 
-			<h4>Product Lookup Code</h4>
-			<form action="transaction" method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">               
-                <input id="lookupCode" type="text" name="lookupCode" placeholder="Lookup Code" th:value="${lookupCode}" >
-                <input id ="searchBtn" type="submit" value="Search" >           
-				<div style="color:red" id="msg"></div>				
-			</form><br>
-            <table class = "returnProduct">               
+            <h4>Product Lookup Code</h4>
+            <form action="transaction" method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">
+                <input id="lookupCode" type="text" name="lookupCode" placeholder="Lookup Code" th:value="${lookupCode}">
+                <input id="searchBtn" type="submit" value="Search">
+                <div style="color:red" id="msg"></div>
+            </form><br>
+            <table class="returnProduct">
                 <tr th:each="product : ${returnList}">
                     <td th:text="${product.lookup}">lookup</td>
                 </tr>
@@ -75,8 +75,10 @@
                     <td style='text-align:right;'><button>remove</button></td>
                 </tr>
             </table><br><br>
-            <button id='searchBtn' class='btn'>Submit</button>
-            <button id='searchBtn' class='btn'>Cancel Transaction</button>
+            <!-- <button id='searchBtn' class='btn'>Submit</button> -->
+            <a class="button">submit</a>
+            <!-- <button id='searchBtn' class='btn'>Cancel Transaction</button> -->
+            <a href="/mainMenu/" class="button">Cancel Transaction</a>
 
         </div>
     </div>
