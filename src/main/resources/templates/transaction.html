@@ -29,17 +29,19 @@
                 <input id ="searchBtn" type="submit" value="Search" >           
 				<div style="color:red" id="msg"></div>				
 			</form><br>
-            <table class = "returnProduct">               
+            <!--table class = "returnProduct">               
                 <tr th:each="product : ${returnList}">
                     <td th:text="${product.lookup}">lookup</td>
                 </tr>
-            </table>
-            <!--ul id="returnlookup" class="lookupCode">
-				<li th:each="product : ${returnList}">
-					<input type="hidden" name="lookupCode" th:value="${lookupCode}" />
-					<span class="productLookupCodeDisplay" th:text="${lookupCode}">lookupCode</span>
-				</li>
-			</ul-->
+            </table-->
+            <div class="createList">
+                <ul id="createProductList" class="lookupCode">
+                    <li>
+                        <span class="productLookupCodeDisplay" th:text="${lookupCode}">LookupCode</span>
+                    </li>
+                </ul>
+            </div>
+
             <button id="add" class='btn' style="visibility: visible">Add</button><br><br>
         </div>
         <div id="addedProducts">

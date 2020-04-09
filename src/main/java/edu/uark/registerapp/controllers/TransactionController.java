@@ -38,34 +38,9 @@ public class TransactionController extends BaseRouteController {
 			this.setErrorMessageFromQueryString(
 				new ModelAndView(ViewNames.TRANSACTION.getViewName()),
 				queryParameters);
-		//modelAndView.addObject("returnList", arrayList);
+		
 		return modelAndView;
 	}
-
-// @RequestMapping(value = "/{lookupCode}", method = RequestMethod.POST)
-// public ModelAndView startWithLookupCode(
-// 	@PathVariable ("lookupCode") String lookupCode,
-// 	@RequestParam final Map<String, String> queryParameters,
-// 	final HttpServletRequest request){
-
-// 		System.out.println("entered second function");
-// 		System.out.println("entered second function");
-// 		System.out.println("entered second function");
-
-// 	ModelAndView modelAndView =
-// 	this.setErrorMessageFromQueryString(
-// 		new ModelAndView(ViewNames.TRANSACTION.getViewName()),
-// 		queryParameters);
-
-
-// 	//String lookupcodeIn = request.getParameter("lookupCode");
-// 	for (Product product : this.productByPartialLookupCodeQuery.setPartialLookupCode(lookupCode).execute()){
-// 		System.out.println("Code: " + product.getLookupCode());			
-// 		}
-// 	modelAndView.addObject("lookupCode", lookupCode);
-		
-// 	return modelAndView;
-// }
 
 
 }
