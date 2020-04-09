@@ -1,6 +1,15 @@
+
 document.addEventListener("DOMContentLoaded", function(event) {
+	var isEmpty = false;
+
 	document.getElementById("searchBtn").addEventListener("click", validateForm);
-	document.getElementById("searchBtn").addEventListener("click", searchActionClick);
+	if(!isEmpty){
+		document.getElementById("searchBtn").addEventListener("click", searchActionClick);
+		//document.getElementById("searchBtn").addEventListener("click", createProductList);
+	}
+	for (let i = 0; i < productListElements.length; i++) {
+		document.getElementById("searchBtn").addEventListener("click", createProductList);
+	}
 });
 
 function validateForm() {
@@ -8,10 +17,10 @@ function validateForm() {
     	
 	if (lookupCode == "") {
 		document.getElementById("msg").innerHTML = "The lookup code field must not be empty.";
+		isEmpty = true;
 		return false;
-
 	}
-
+	isEmpty = false;
 	return true;
 }
 
@@ -25,10 +34,23 @@ function searchActionClick(event) {
 			searchActionElement.disabled = false;
 
 			if (isSuccessResponse(callbackResponse)) {
-				window.location.replace("/transaction");
+				//window.location.replace("/transaction");
 			}
 		});
 	}
+};
+
+function createProductList(event) {
+	const ulElement = document.getElementById("createProductList");
+	const nextEntryId = (ulElement.childElementCount + 1).toString();
+	const liElement = document.createElement("li");
+	const lookupCodeDisplayElement = document.createElement("Span");
+
+	lookupCodeDisplayElement.innerHTML = ("Product Lookup Code " + nextEntryId);
+	lookupCodeDisplayElement.classList.add("productLookupCodeDisplay");
+	liElement.appendChild(lookupCodeDisplayElement);
+	liElement.appendChild(document.createElement("br"));
+	ulElement.appendChild(liElement);
 };
 
 // Getters and setters

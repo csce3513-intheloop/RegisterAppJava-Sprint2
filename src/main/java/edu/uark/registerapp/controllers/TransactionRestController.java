@@ -24,7 +24,6 @@ import edu.uark.registerapp.models.api.Product;
 public class TransactionRestController extends BaseRestController {
 
 	@RequestMapping( method = RequestMethod.GET)
-
 	public ArrayList<String> getpartialLookupCode(
 		@RequestParam final Map<String, String> queryParameters,
         //@RequestBody final Product product,
