@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="/styles/master.css">
+    <link rel="stylesheet" type="text/css" href="/styles/transaction.css">
 
     <script type="text/javascript" src="/scripts/master.js" defer></script>
     <script type="text/javascript" src="/scripts/transaction.js" defer></script>
@@ -20,10 +21,6 @@
             <h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
         </div>
         <div id='searchArea'>
-            <h4>Product Lookup Code</h4>
-            <input id='searchFor' type='text' size='36'><br><br>
-            <button id='searchBtn' class='btn'>Search</button><br><br>
-
 			<h4>Product Lookup Code</h4>
 			<form action="transaction" method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">               
                 <input id="lookupCode" type="text" name="lookupCode" placeholder="Lookup Code" th:value="${lookupCode}" >
@@ -35,14 +32,14 @@
                     <td th:text="${product.lookup}">lookup</td>
                 </tr>
             </table-->
-            <div class="createList">
+            <div class="transactionWrapper">
                 <ul id="createProductList" class="lookupCode">
-                    <li>
-                        <span class="productLookupCodeDisplay" th:text="${lookupCode}">LookupCode</span>
-                    </li>
+                    <!--li>
+                        <span class="productLookupCodeDisplay" th:text="${lookupCode}" th:value="${lookupCode}">LookupCode</span>
+                    </li-->
                 </ul>
             </div>
-
+            <br>
             <button id="add" class='btn' style="visibility: visible">Add</button><br><br>
         </div>
         <div id="addedProducts">

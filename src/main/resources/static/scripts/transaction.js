@@ -1,14 +1,9 @@
 
 document.addEventListener("DOMContentLoaded", function(event) {
 	var isEmpty = false;
-
 	document.getElementById("searchBtn").addEventListener("click", validateForm);
 	if(!isEmpty){
 		document.getElementById("searchBtn").addEventListener("click", searchActionClick);
-		//document.getElementById("searchBtn").addEventListener("click", createProductList);
-	}
-	for (let i = 0; i < productListElements.length; i++) {
-		document.getElementById("searchBtn").addEventListener("click", createProductList);
 	}
 });
 
@@ -20,6 +15,7 @@ function validateForm() {
 		isEmpty = true;
 		return false;
 	}
+	document.getElementById("msg").innerHTML = "";
 	isEmpty = false;
 	return true;
 }
@@ -34,23 +30,39 @@ function searchActionClick(event) {
 			searchActionElement.disabled = false;
 
 			if (isSuccessResponse(callbackResponse)) {
-				//window.location.replace("/transaction");
+
+				if (!callbackResponse.data.isEmpty) { 
+					//&& callbackResponse.data.length != 0) {
+					
+					//console.log(callbackResponse.data);			
+					createProductList(callbackResponse);		
+					
+				}
 			}
 		});
 	}
 };
 
-function createProductList(event) {
+
+function createProductList(callbackResponse) {
+	
 	const ulElement = document.getElementById("createProductList");
 	const nextEntryId = (ulElement.childElementCount + 1).toString();
 	const liElement = document.createElement("li");
 	const lookupCodeDisplayElement = document.createElement("Span");
 
-	lookupCodeDisplayElement.innerHTML = ("Product Lookup Code " + nextEntryId);
+	if (callbackResponse.data.length != 0) {
+		lookupCodeDisplayElement.innerHTML = ("Searched Results :" + callbackResponse.data);
+	}
+	else {
+		lookupCodeDisplayElement.innerHTML = ("Result not found");
+		//document.getElementById("msg").innerHTML = "Result not found";
+	}
 	lookupCodeDisplayElement.classList.add("productLookupCodeDisplay");
 	liElement.appendChild(lookupCodeDisplayElement);
 	liElement.appendChild(document.createElement("br"));
 	ulElement.appendChild(liElement);
+
 };
 
 // Getters and setters

@@ -1,0 +1,18 @@
+.transactionWrapper {
+	display: inline-block;
+}
+.lookupCode li {
+	cursor: pointer;
+	background-color: #EEE;
+	margin: .5em;
+	padding: .3em;
+	height: 3.5em;
+	border-radius: 4px;
+	text-align: left;
+}
+
+.lookupCode li:hover {
+	color: #607D8B;
+	background-color: #DDD;
+	left: .1em;
+}
