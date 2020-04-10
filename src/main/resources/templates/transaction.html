@@ -21,17 +21,21 @@
             <h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
         </div>
         <div id='searchArea'>
+
 			<h4>Product Lookup Code</h4>
-			<form action="transaction" method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">               
+			<form method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">               
                 <input id="lookupCode" type="text" name="lookupCode" placeholder="Lookup Code" th:value="${lookupCode}" >
                 <input id ="searchBtn" type="submit" value="Search" >           
 				<div style="color:red" id="msg"></div>				
 			</form><br>
-            <!--table class = "returnProduct">               
-                <tr th:each="product : ${returnList}">
-                    <td th:text="${product.lookup}">lookup</td>
-                </tr>
-            </table-->
+
+            <!--ul id="returnlookup" class="lookupCode">
+				<li th:each="product : ${searchResults}">
+					<input type="hidden" name="lookupCode" th:value="${searchResults.lookupCode}" />
+					<span class="productLookupCodeDisplay" th:text="${searchResults.lookupCode}">lookupCode</span>
+				</li>
+			</ul-->
+           
             <div class="transactionWrapper">
                 <ul id="createProductList" class="lookupCode">
                     <!--li>
@@ -41,9 +45,10 @@
             </div>
             <br>
             <button id="add" class='btn' style="visibility: visible">Add</button><br><br>
-        </div>
-        <div id="addedProducts">
 
+        </div>
+
+        <div id="addedProducts">
             <table id='product' type="table" style="width:60%;background-color: rgb(200, 200, 200);">
                 <tr style="height: 30px;">
                     <td><input id='quantity0' type='text' name=quantity0 size='2'></td>
@@ -76,12 +81,12 @@
                     <td style='text-align:right;'><button>remove</button></td>
                 </tr>
             </table><br><br>
-            <button id='searchBtn' class='btn'>Submit</button>
-            <button id='searchBtn' class='btn'>Cancel Transaction</button>
+            <!-- <button id='searchBtn' class='btn'>Submit</button> -->
+            <a class="button">submit</a>
+            <!-- <button id='searchBtn' class='btn'>Cancel Transaction</button> -->
+            <a href="/mainMenu/" class="button">Cancel Transaction</a>
 
         </div>
-    </div>
-    </div>
     </div>
 
     <div class="footer">

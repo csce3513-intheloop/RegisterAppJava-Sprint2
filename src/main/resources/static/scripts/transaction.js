@@ -24,16 +24,14 @@ function searchActionClick(event) {
 	const searchActionElement = event.target;
 	searchActionElement.disabled = true;
 	const searchActionUrl = ("/api/transaction/?lookupCode=" + getLookupCode());
-	
+
 	if (getLookupCode() != null){
-		ajaxGet(searchActionUrl, (callbackResponse) => {
+		var searchResults = ajaxGet(searchActionUrl, (callbackResponse) => {
 			searchActionElement.disabled = false;
 
 			if (isSuccessResponse(callbackResponse)) {
 
-				if (!callbackResponse.data.isEmpty) { 
-					//&& callbackResponse.data.length != 0) {
-					
+				if (!callbackResponse.data.isEmpty) { 					
 					//console.log(callbackResponse.data);			
 					createProductList(callbackResponse);		
 					
