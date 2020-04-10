@@ -31,9 +31,15 @@ function searchActionClick(event) {
 
 			if (isSuccessResponse(callbackResponse)) {
 
-				if (!callbackResponse.data.isEmpty) { 					
-					//console.log(callbackResponse.data);			
-					createProductList(callbackResponse);		
+				if (!callbackResponse.data.isEmpty) { 
+					if (callbackResponse.data.length == 0){
+						document.getElementById("msg").innerHTML = "Result not found";
+					}
+					for(var i=0; i < callbackResponse.data.length; i++){						   
+						createProductList(callbackResponse.data[i]);
+						console.log(callbackResponse.data[i]);
+					}							
+							
 					
 				}
 			}
@@ -42,24 +48,24 @@ function searchActionClick(event) {
 };
 
 
-function createProductList(callbackResponse) {
+function createProductList(returnLookupCode) {
 	
 	const ulElement = document.getElementById("createProductList");
 	const nextEntryId = (ulElement.childElementCount + 1).toString();
 	const liElement = document.createElement("li");
 	const lookupCodeDisplayElement = document.createElement("Span");
 
-	if (callbackResponse.data.length != 0) {
-		lookupCodeDisplayElement.innerHTML = ("Searched Results :" + callbackResponse.data);
+	if (returnLookupCode != "") {
+		lookupCodeDisplayElement.innerHTML = ("Searched Results :" + returnLookupCode);
+		lookupCodeDisplayElement.classList.add("productLookupCodeDisplay");
+		liElement.appendChild(lookupCodeDisplayElement);
+		liElement.appendChild(document.createElement("br"));
+		ulElement.appendChild(liElement);	
 	}
-	else {
-		lookupCodeDisplayElement.innerHTML = ("Result not found");
-		//document.getElementById("msg").innerHTML = "Result not found";
-	}
-	lookupCodeDisplayElement.classList.add("productLookupCodeDisplay");
-	liElement.appendChild(lookupCodeDisplayElement);
-	liElement.appendChild(document.createElement("br"));
-	ulElement.appendChild(liElement);
+	// else {
+	// 	//lookupCodeDisplayElement.innerHTML = ("Result not found");
+	// 	document.getElementById("msg").innerHTML = "Result not found";
+	// }
 
 };
 
