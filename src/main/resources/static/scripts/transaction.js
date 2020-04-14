@@ -35,6 +35,8 @@ function searchActionClick(event) {
 					if (callbackResponse.data.length == 0){
 						document.getElementById("msg").innerHTML = "Result not found";
 					}
+
+					document.getElementById("createProductList").innerHTML="";
 					for(var i=0; i < callbackResponse.data.length; i++){						   
 						createProductList(callbackResponse.data[i]);
 						console.log(callbackResponse.data[i]);
@@ -49,11 +51,14 @@ function searchActionClick(event) {
 
 
 function createProductList(returnLookupCode) {
-	
 	const ulElement = document.getElementById("createProductList");
 	const nextEntryId = (ulElement.childElementCount + 1).toString();
 	const liElement = document.createElement("li");
 	const lookupCodeDisplayElement = document.createElement("Span");
+//	var elementCount = ulElement.childElementCount;
+//	console.log(elementCount);
+//	liElement.deleteChild(lookupCodeDisplayElement);
+
 
 	if (returnLookupCode != "") {
 		lookupCodeDisplayElement.innerHTML = ("Searched Results :" + returnLookupCode);

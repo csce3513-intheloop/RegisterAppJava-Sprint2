@@ -26,19 +26,14 @@ public class TransactionRestController extends BaseRestController {
 	@RequestMapping( method = RequestMethod.GET)
 	public ArrayList<String> getpartialLookupCode(
 		@RequestParam final Map<String, String> queryParameters,
-        //@RequestBody final Product product,
 		final HttpServletRequest request,
 		final HttpServletResponse response
 	) {
-        //System.out.println("lookupcode: " );
-        ArrayList<String> arrayList = new ArrayList<>(); 
-        //String lookupcode = product.getLookupCode();
-		//String lookupcode = request.getParameter("lookupCode");
+   
+        ArrayList<String> arrayList = new ArrayList<>();        
 		if (queryParameters.get("lookupCode") != null){
-			//System.out.println("lookupcode: " + lookupcode);
 			for (Product product : this.productByPartialLookupCodeQuery.setPartialLookupCode(queryParameters.get("lookupCode")).execute()){
 				arrayList.add(product.getLookupCode());
-				//System.out.println("lookupcode: " + product.getLookupCode());
 			} 
 			
 			for (int i=0; i < arrayList.size(); i++ ){

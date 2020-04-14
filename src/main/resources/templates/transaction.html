@@ -29,18 +29,9 @@
 				<div style="color:red" id="msg"></div>				
 			</form><br>
 
-            <!--ul id="returnlookup" class="lookupCode">
-				<li th:each="product : ${searchResults}">
-					<input type="hidden" name="lookupCode" th:value="${searchResults.lookupCode}" />
-					<span class="productLookupCodeDisplay" th:text="${searchResults.lookupCode}">lookupCode</span>
-				</li>
-			</ul-->
-           
-            <div class="transactionWrapper">
+            <div class="transactionWrapper" id="transactionWrapper">
                 <ul id="createProductList" class="lookupCode">
-                    <!--li>
-                        <span class="productLookupCodeDisplay" th:text="${lookupCode}" th:value="${lookupCode}">LookupCode</span>
-                    </li-->
+                    
                 </ul>
             </div>
             <br>
