@@ -12,10 +12,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function validateForm() {
-	removeProductList();
+//	removeProductList();
     var lookupCode = document.forms["Search"]["lookupCode"].value;
     	
 	if (lookupCode == "") {
+		document.getElementById("createProductList").innerHTML="";
 		document.getElementById("msg").innerHTML = "The lookup code field must not be empty.";
 		isEmpty = true;
 		return false;
