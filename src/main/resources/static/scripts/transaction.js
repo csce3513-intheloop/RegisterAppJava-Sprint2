@@ -127,3 +127,8 @@ function setLookupCode(lookupCode) {
 function getLookupCodeElement() {
 	return document.getElementById("lookupCode");
 }
+
+//transactionId,
+//productId,
+//quantity,
+//price

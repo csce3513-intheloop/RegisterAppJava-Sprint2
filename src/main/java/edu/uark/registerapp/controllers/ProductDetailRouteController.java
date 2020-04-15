@@ -91,7 +91,8 @@ public class ProductDetailRouteController extends BaseRouteController {
 				ViewModelNames.PRODUCT.getValue(),
 				(new Product())
 					.setCount(0)
-					.setLookupCode(StringUtils.EMPTY));
+					.setLookupCode(StringUtils.EMPTY)
+					.setPrice(0));
 		}
 
 		return modelAndView;

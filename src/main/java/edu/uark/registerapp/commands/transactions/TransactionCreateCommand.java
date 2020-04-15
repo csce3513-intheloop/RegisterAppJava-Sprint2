@@ -32,9 +32,9 @@ public class TransactionCreateCommand implements VoidCommandInterface {
 
 			transactionEntryEntities.add(
 				(new TransactionEntryEntity())
-			//		.setPrice(productEntity.getPrice())
-					.setProductId(productEntity.getId())
-					.setQuantity(purchasedQuantity));
+					.setPrice(productEntity.getPrice())
+					.setQuantity(purchasedQuantity)
+					.setProductId(productEntity.getId()));
 		}
 
 		this.createTransaction(

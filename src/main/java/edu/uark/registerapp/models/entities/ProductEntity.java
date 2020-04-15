@@ -40,6 +40,18 @@ public class ProductEntity {
 		return this;
 	}
 
+	@Column(name = "price")
+	private long price;
+
+	public long getPrice() {
+		return this.price;
+	}
+
+	public ProductEntity setPrice(final long price) {
+		this.price = price;
+		return this;
+	}
+
 	@Column(name = "count")
 	private int count;
 
@@ -51,6 +63,7 @@ public class ProductEntity {
 		this.count = count;
 		return this;
 	}
+	
 
 	@Column(name = "createdon", insertable = false, updatable = false)
 	@Generated(GenerationTime.INSERT)
@@ -74,17 +87,20 @@ public class ProductEntity {
 		this.count = -1;
 		this.id = new UUID(0, 0);
 		this.lookupCode = StringUtils.EMPTY;
+		this.price = 0L;
 	}
 
-	public ProductEntity(final String lookupCode, final int count) {
+	public ProductEntity(final String lookupCode, final int count, final long price) {
 		this.count = count;
 		this.id = new UUID(0, 0);
 		this.lookupCode = lookupCode;
+		this.price = price;
 	}
 
 	public ProductEntity(final Product apiProduct) {
     	this.id = new UUID(0, 0);
 		this.count = apiProduct.getCount();
 		this.lookupCode = apiProduct.getLookupCode();
+		this.price = apiProduct.getPrice();
 	}
 }
