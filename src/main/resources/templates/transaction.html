@@ -17,75 +17,31 @@
     </div>
 
     <div id="main" class="main">
+
         <div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
             <h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
         </div>
-        <div id='searchArea'>
 
+        <div id='searchArea'>
 			<h4>Product Lookup Code</h4>
 			<form method="GET" onsubmit="return validateForm();" name="Search" class="inputContent">               
                 <input id="lookupCode" type="text" name="lookupCode" placeholder="Lookup Code" th:value="${lookupCode}" >
                 <input id ="searchBtn" type="submit" value="Search" >           
 				<div style="color:red" id="msg"></div>				
 			</form><br>
-
-            <!--ul id="returnlookup" class="lookupCode">
-				<li th:each="product : ${searchResults}">
-					<input type="hidden" name="lookupCode" th:value="${searchResults.lookupCode}" />
-					<span class="productLookupCodeDisplay" th:text="${searchResults.lookupCode}">lookupCode</span>
-				</li>
-			</ul-->
            
-            <div class="transactionWrapper">
-                <ul id="createProductList" class="lookupCode">
-                    <!--li>
-                        <span class="productLookupCodeDisplay" th:text="${lookupCode}" th:value="${lookupCode}">LookupCode</span>
-                    </li-->
+            <div class="searchResultWrapper">
+                <ul id="createProductList" class="lookUpCode" style="list-style-type:none;">
                 </ul>
             </div>
-            <br>
-            <button id="add" class='btn' style="visibility: visible">Add</button><br><br>
-
+            
         </div>
 
-        <div id="addedProducts">
-            <table id='product' type="table" style="width:60%;background-color: rgb(200, 200, 200);">
-                <tr style="height: 30px;">
-                    <td><input id='quantity0' type='text' name=quantity0 size='2'></td>
-                    <td style='text-align:center'>
-                        <div>Product1</div>
-                    </td>
-                    <td style='text-align:center'>
-                        <div>Price1</div>
-                    </td>
-                    <td style='text-align:right'><button>remove</button></td>
-                </tr>
-                <tr style="height: 30px;">
-                    <td><input id='quantity1' type='text' size='2'></td>
-                    <td style='text-align:center'>
-                        <div>Product2</div>
-                    </td>
-                    <td style='text-align:center'>
-                        <div>Price2</div>
-                    </td>
-                    <td style='text-align:right'><button id='searchBtn'>remove</button></td>
-                </tr>
-                <tr style="height: 30px;">
-                    <td><input id='quantity2' type='text' size='2'></td>
-                    <td style='text-align:center'>
-                        <div>Product3</div>
-                    </td>
-                    <td style='text-align:center'>
-                        <div>Price3</div>
-                    </td>
-                    <td style='text-align:right;'><button>remove</button></td>
-                </tr>
-            </table><br><br>
-            <!-- <button id='searchBtn' class='btn'>Submit</button> -->
-            <a class="button">submit</a>
-            <!-- <button id='searchBtn' class='btn'>Cancel Transaction</button> -->
+        <div id="cartObject">
+            <table id="cart" class="cart">
+            </table>
+            <a class="button">Ring Up</a>
             <a href="/mainMenu/" class="button">Cancel Transaction</a>
-
         </div>
     </div>
 
