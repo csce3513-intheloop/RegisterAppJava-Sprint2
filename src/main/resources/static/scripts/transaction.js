@@ -39,8 +39,8 @@ function getCLickedListItemElement(target) {
 
 function onListItemClicked(event) {
 	const unorderedListElement = document.getElementById("createProductList");
+	addProductToCart(getCLickedListItemElement(event.target).innerHTML);
 	unorderedListElement.removeChild(getCLickedListItemElement(event.target));
-
 }
 
 function searchActionClick(event) {
@@ -69,13 +69,12 @@ function searchActionClick(event) {
 	}
 };
 
-function addProductToCart(target) {
+function addProductToCart(object) {
 
-	let product = getCLickedListItemElement(target);
 	const tableElement = document.getElementById("cart");
-	const trElement = document.createElement("tr");
+	const trElement = document.createElement("li");
 	const cartDisplayElement = document.createElement("span");
-	cartDisplayElement.innerHTML = product.innerHTML;
+	cartDisplayElement.innerHTML = object;
 	cartDisplayElement.classList.add("cart");
 	trElement.appendChild(cartDisplayElement);
 	trElement.appendChild(document.createElement("br"));
@@ -94,7 +93,6 @@ function removeProductList() {
 
 function createProductList(returnLookupCode) {
 	const ulElement = document.getElementById("createProductList");
-	const nextEntryId = (ulElement.childElementCount + 1).toString();
 	const liElement = document.createElement("li");
 	liElement.addEventListener("click", onListItemClicked);
 	const lookupCodeDisplayElement = document.createElement("Span");
