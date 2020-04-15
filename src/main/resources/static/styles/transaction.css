@@ -9,6 +9,7 @@
 	height: 3.5em;
 	border-radius: 4px;
 	text-align: left;
+	list-style: none;
 }
 
 .lookupCode li:hover {
