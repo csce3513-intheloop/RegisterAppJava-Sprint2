@@ -1,18 +1,27 @@
 
 document.addEventListener("DOMContentLoaded", function(event) {
+
 	var isEmpty = false;
+	// Validation for empty input in lookupcode search section
 	document.getElementById("searchBtn").addEventListener("click", validateForm);
+
+	// Search button action
 	if(!isEmpty){
 		document.getElementById("searchBtn").addEventListener("click", searchActionClick);
 	}
+
+	// Search results click action
 	const listItemElements = document.getElementById("createProductList").querySelectorAll("li");
 	for(let i = 0; i < listItemElements.length; i++) {
 		listItemElements[i].addEventListener("click", onListItemClicked);
 	}
+
+	// Delete button action
+	// document.getElementById("cart").addEventListener("click",deleteProductFromCart);
+
 });
 
 function validateForm() {
-//	removeProductList();
     var lookupCode = document.forms["Search"]["lookupCode"].value;
     	
 	if (lookupCode == "") {
@@ -25,22 +34,6 @@ function validateForm() {
 
 	isEmpty = false;
 	return true;
-}
-
-function getCLickedListItemElement(target) {
-	let clickedElement = target;
-
-	while(clickedElement.tagName !== "LI") {
-		clickedElement = clickedElement.parentElement;
-	}
-
-	return clickedElement;
-}
-
-function onListItemClicked(event) {
-	const unorderedListElement = document.getElementById("createProductList");
-	addProductToCart(getCLickedListItemElement(event.target).innerHTML);
-	unorderedListElement.removeChild(getCLickedListItemElement(event.target));
 }
 
 function searchActionClick(event) {
@@ -69,16 +62,58 @@ function searchActionClick(event) {
 	}
 };
 
+function createProductList(returnLookupCode) {
+	const ulElement = document.getElementById("createProductList");
+	const liElement = document.createElement("li");
+	liElement.addEventListener("click", onListItemClicked);
+	const lookupCodeDisplayElement = document.createElement("Span");
+
+	if (returnLookupCode != "") {
+		lookupCodeDisplayElement.innerHTML = returnLookupCode;
+		lookupCodeDisplayElement.classList.add("productLookupCodeDisplay");
+		liElement.appendChild(lookupCodeDisplayElement);
+		liElement.appendChild(document.createElement("br"));
+		ulElement.appendChild(liElement);	
+	}
+};
+
+function getCLickedListItemElement(target) {
+	let clickedElement = target;
+
+	while(clickedElement.tagName !== "LI") {
+		clickedElement = clickedElement.parentElement;
+	}
+
+	return clickedElement;
+}
+
+function onListItemClicked(event) {
+	const unorderedListElement = document.getElementById("createProductList");
+	addProductToCart(getCLickedListItemElement(event.target).innerHTML);
+	unorderedListElement.removeChild(getCLickedListItemElement(event.target));
+	document.getElementById("cart").addEventListener("click",deleteProductFromCart);
+
+}
+
 function addProductToCart(object) {
 
 	const tableElement = document.getElementById("cart");
 	const trElement = document.createElement("li");
 	const cartDisplayElement = document.createElement("span");
+	const deleteBtnElement = document.createElement("input");
+	const nextDeleteBtnId = (tableElement.childElementCount +1).toString();
+
+	deleteBtnElement.setAttribute('id','deleteBtn'+ nextDeleteBtnId);
+	deleteBtnElement.setAttribute('type','button');
+	deleteBtnElement.setAttribute('value','Delete');
+	deleteBtnElement.setAttribute('style', 'float:right');
 	cartDisplayElement.innerHTML = object;
 	cartDisplayElement.classList.add("cart");
 	trElement.appendChild(cartDisplayElement);
+	trElement.appendChild(deleteBtnElement);
 	trElement.appendChild(document.createElement("br"));
 	tableElement.appendChild(trElement);
+	console.log(tableElement);
 }
 
 function removeProductList() {
@@ -91,29 +126,13 @@ function removeProductList() {
 	}
 }
 
-function createProductList(returnLookupCode) {
-	const ulElement = document.getElementById("createProductList");
-	const liElement = document.createElement("li");
-	liElement.addEventListener("click", onListItemClicked);
-	const lookupCodeDisplayElement = document.createElement("Span");
-//	var elementCount = ulElement.childElementCount;
-//	console.log(elementCount);
-//	liElement.deleteChild(lookupCodeDisplayElement);
+function deleteProductFromCart(event){
+	const deleteActionElement = event.target;
+	var closestElement = deleteActionElement.closest('li');
+	document.getElementById("cart").removeChild(closestElement);	
 
+}
 
-	if (returnLookupCode != "") {
-		lookupCodeDisplayElement.innerHTML = returnLookupCode;
-		lookupCodeDisplayElement.classList.add("productLookupCodeDisplay");
-		liElement.appendChild(lookupCodeDisplayElement);
-		liElement.appendChild(document.createElement("br"));
-		ulElement.appendChild(liElement);	
-	}
-	// else {
-	// 	//lookupCodeDisplayElement.innerHTML = ("Result not found");
-	// 	document.getElementById("msg").innerHTML = "Result not found";
-	// }
-
-};
 
 // Getters and setters
 function getLookupCode() {

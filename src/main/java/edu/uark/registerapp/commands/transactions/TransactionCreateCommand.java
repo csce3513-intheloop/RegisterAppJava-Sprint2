@@ -28,7 +28,7 @@ public class TransactionCreateCommand implements VoidCommandInterface {
 		for (ProductEntity productEntity : this.productRepository.findAll()) {
 			int purchasedQuantity = ThreadLocalRandom.current().nextInt(1, 11);
 
-		//	transactionTotal += (productEntity.getPrice() * purchasedQuantity);
+			transactionTotal += (productEntity.getPrice() * purchasedQuantity);
 
 			transactionEntryEntities.add(
 				(new TransactionEntryEntity())
