@@ -16,9 +16,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		listItemElements[i].addEventListener("click", onListItemClicked);
 	}
 
-	// Delete button action
-	// document.getElementById("cart").addEventListener("click",deleteProductFromCart);
-
+	const cartListElements = document.getElementById("deleteBtn");
+	for (let i = 0; i < cartListElements.length; i++) {
+		//cartListElements[i].addEventListener("click", deleteProductFromCart);
+	}
+	console.log(cartListElements.length);
 });
 
 function validateForm() {
@@ -101,12 +103,12 @@ function addProductToCart(object) {
 	const trElement = document.createElement("li");
 	const cartDisplayElement = document.createElement("span");
 	const deleteBtnElement = document.createElement("input");
-	const nextDeleteBtnId = (tableElement.childElementCount +1).toString();
+	//const nextDeleteBtnId = (tableElement.childElementCount +1).toString();
 
-	deleteBtnElement.setAttribute('id','deleteBtn'+ nextDeleteBtnId);
+	deleteBtnElement.setAttribute('id','deleteBtn');
 	deleteBtnElement.setAttribute('type','button');
 	deleteBtnElement.setAttribute('value','Delete');
-	deleteBtnElement.setAttribute('style', 'float:right');
+	deleteBtnElement.setAttribute('style','float:right');
 	cartDisplayElement.innerHTML = object;
 	cartDisplayElement.classList.add("cart");
 	trElement.appendChild(cartDisplayElement);
@@ -128,7 +130,7 @@ function removeProductList() {
 
 function deleteProductFromCart(event){
 	const deleteActionElement = event.target;
-	var closestElement = deleteActionElement.closest('li');
+	const closestElement = deleteActionElement.closest('li');
 	document.getElementById("cart").removeChild(closestElement);	
 
 }
