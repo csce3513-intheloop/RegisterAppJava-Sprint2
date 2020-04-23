@@ -15,10 +15,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	for(let i = 0; i < listItemElements.length; i++) {
 		listItemElements[i].addEventListener("click", onListItemClicked);
 	}
-
-	// Delete button action
-	// document.getElementById("cart").addEventListener("click",deleteProductFromCart);
-
 });
 
 function validateForm() {
@@ -54,7 +50,6 @@ function searchActionClick(event) {
 					document.getElementById("createProductList").innerHTML="";
 					for(var i=0; i < callbackResponse.data.length; i++){						   
 						createProductList(callbackResponse.data[i]);
-						console.log(callbackResponse.data[i]);
 					}							
 				}
 			}
@@ -67,11 +62,24 @@ function createProductList(returnLookupCode) {
 	const liElement = document.createElement("li");
 	liElement.addEventListener("click", onListItemClicked);
 	const lookupCodeDisplayElement = document.createElement("Span");
-
+	const priseDisplayElement = document.createElement("Span");
+	const countDisplayElement = document.createElement("Span");
+	var priceText = document.createTextNode("Price: ")
+	var countText = document.createTextNode("Count: ")
 	if (returnLookupCode != "") {
-		lookupCodeDisplayElement.innerHTML = returnLookupCode;
+		lookupCodeDisplayElement.innerHTML = returnLookupCode.lookupCode;
+		priseDisplayElement.innerHTML = returnLookupCode.price;
+		countDisplayElement.innerHTML = returnLookupCode.count;
 		lookupCodeDisplayElement.classList.add("productLookupCodeDisplay");
+		priseDisplayElement.classList.add("productPriceDisplay");
+		countDisplayElement.classList.add("productCountDisplay");
 		liElement.appendChild(lookupCodeDisplayElement);
+		liElement.appendChild(document.createElement("br"));
+		liElement.appendChild(priceText);
+		liElement.appendChild(priseDisplayElement);
+		liElement.appendChild(document.createElement("br"));
+		liElement.appendChild(countText);
+		liElement.appendChild(countDisplayElement);
 		liElement.appendChild(document.createElement("br"));
 		ulElement.appendChild(liElement);	
 	}
@@ -89,53 +97,84 @@ function getCLickedListItemElement(target) {
 
 function onListItemClicked(event) {
 	const unorderedListElement = document.getElementById("createProductList");
-	addProductToCart(getCLickedListItemElement(event.target).innerHTML);
+	addProductToCart(getCLickedListItemElement(event.target));
 	unorderedListElement.removeChild(getCLickedListItemElement(event.target));
-	document.getElementById("cart").addEventListener("click",deleteProductFromCart);
+	//document.getElementById("cart").addEventListener("click",deleteProductFromCart);
 
 }
 
-function addProductToCart(object) {
-
+function addProductToCart(clickedListItem) {
+	const lookupCode = clickedListItem.querySelector("span.productLookupCodeDisplay").innerHTML;
+	const price = clickedListItem.querySelector("span.productPriceDisplay").innerHTML;
+	const productCount = clickedListItem.querySelector("span.productCountDisplay").innerHTML;
+	
 	const tableElement = document.getElementById("cart");
 	const trElement = document.createElement("li");
 	const cartDisplayElement = document.createElement("span");
+	const priceDisplayElement = document.createElement("span");
 	const deleteBtnElement = document.createElement("input");
+	const countInput = document.createElement("input");
 	const nextDeleteBtnId = (tableElement.childElementCount +1).toString();
+<<<<<<< HEAD
 	const quantityInputElement = document.createElement("input");
 
 	quantityInputElement.setAttribute('id','quantityInput'+ nextDeleteBtnId);
 	deleteBtnElement.setAttribute('type','number');
 	deleteBtnElement.setAttribute('value','1');
 	deleteBtnElement.setAttribute('style', 'float:left');
+=======
+	var priceText = document.createTextNode("Price: ");
+	var counrText = document.createTextNode("Count: ");
+	var count = document.createTextNode(1);
+>>>>>>> cbade896f6f84a19f55372f62d394cf998bbc9bb
 
+	countInput.setAttribute('type','number');
+	countInput.setAttribute('value',count);
 	deleteBtnElement.setAttribute('id','deleteBtn'+ nextDeleteBtnId);
 	deleteBtnElement.setAttribute('type','button');
 	deleteBtnElement.setAttribute('value','Delete');
 	deleteBtnElement.setAttribute('style', 'float:right');
+<<<<<<< HEAD
 	cartDisplayElement.innerHTML = object;
 	cartDisplayElement.setAttribute('style', 'float:center');
+=======
+	deleteBtnElement.addEventListener("click",deleteProductFromCart);
+	console.log(productCount);
+	console.log(count);
+	if (count > productCount){
+		count = productCount;
+		alert("The total quantity is "+productCount);
+	}
+
+	cartDisplayElement.innerHTML = lookupCode;
+	priceDisplayElement.innerHTML = price;
+>>>>>>> cbade896f6f84a19f55372f62d394cf998bbc9bb
 	cartDisplayElement.classList.add("cart");
 	trElement.appendChild(cartDisplayElement);
+	trElement.appendChild(document.createElement("br"));
+	trElement.appendChild(priceText);
+	trElement.appendChild(priceDisplayElement);
+	trElement.appendChild(document.createElement("br"));
+	trElement.appendChild(counrText);
+	trElement.appendChild(countInput);	
 	trElement.appendChild(deleteBtnElement);
 	trElement.appendChild(document.createElement("br"));
 	tableElement.appendChild(trElement);
-	console.log(tableElement);
 }
 
-function removeProductList() {
-	var list = document.getElementById("createProductList");
+// function removeProductList() {
+// 	var list = document.getElementById("createProductList");
 
-	let i = 0;
-	while(list.hasChildNodes) {
-		list.removeChild(list.childNodes[i]);
-		i++;
-	}
-}
+// 	let i = 0;
+// 	while(list.hasChildNodes) {
+// 		list.removeChild(list.childNodes[i]);
+// 		i++;
+// 	}
+// }
 
 function deleteProductFromCart(event){
 	const deleteActionElement = event.target;
-	var closestElement = deleteActionElement.closest('li');
+	const closestElement = deleteActionElement.closest('li');
 	document.getElementById("cart").removeChild(closestElement);	
 
 }
@@ -151,8 +190,3 @@ function setLookupCode(lookupCode) {
 function getLookupCodeElement() {
 	return document.getElementById("lookupCode");
 }
-
-//transactionId,
-//productId,
-//quantity,
-//price
