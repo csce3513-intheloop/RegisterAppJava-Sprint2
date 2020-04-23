@@ -58,9 +58,9 @@ public class Transaction extends ApiResponse {
 	public double getTotalCount(){
 		return this.totalCount;
 	}
-	public Transaction setTotalCount(){
+	public double setTotalCount(){
 		this.totalCount = this.totalCount + this.productQuantity;
-		return this; 
+		return this.totalCount; 
 	}
 	
 	public Transaction(){
@@ -80,6 +80,6 @@ public class Transaction extends ApiResponse {
 		this.productPrice = transactionEntryEntity.getPrice();
 		this.productQuantity =transactionEntryEntity.getQuantity();
 		this.totalPrice = transactionEntity.getTotal();
-		this.totalCount = 0; 
+		this.totalCount = setTotalCount(); 
 	}
 }
