@@ -140,7 +140,7 @@ function addProductToCart(clickedListItem) {
 
 function deleteProductFromCart(event){
 	const deleteActionElement = event.target;
-	var closestElement = deleteActionElement.closest('li');
+	const closestElement = deleteActionElement.closest('li');
 	document.getElementById("cart").removeChild(closestElement);	
 
 }
