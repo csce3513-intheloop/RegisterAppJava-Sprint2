@@ -15,10 +15,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	for(let i = 0; i < listItemElements.length; i++) {
 		listItemElements[i].addEventListener("click", onListItemClicked);
 	}
-
-	// Delete button action
-	// document.getElementById("cart").addEventListener("click",deleteProductFromCart);
-
 });
 
 function validateForm() {
@@ -89,14 +85,14 @@ function getCLickedListItemElement(target) {
 
 function onListItemClicked(event) {
 	const unorderedListElement = document.getElementById("createProductList");
-	addProductToCart(getCLickedListItemElement(event.target).innerHTML);
+	addProductToCart(getCLickedListItemElement(event.target));
 	unorderedListElement.removeChild(getCLickedListItemElement(event.target));
-	document.getElementById("cart").addEventListener("click",deleteProductFromCart);
+	document.getElementById("deleteBtn").addEventListener("click",deleteProductFromCart);
 
 }
 
-function addProductToCart(object) {
-
+function addProductToCart(clickedListItem) {
+	const lookupCode = clickedListItem.querySelector("span.productLookupCodeDisplay").innerHTML;
 	const tableElement = document.getElementById("cart");
 	const trElement = document.createElement("li");
 	const cartDisplayElement = document.createElement("span");
@@ -107,24 +103,24 @@ function addProductToCart(object) {
 	deleteBtnElement.setAttribute('type','button');
 	deleteBtnElement.setAttribute('value','Delete');
 	deleteBtnElement.setAttribute('style', 'float:right');
-	cartDisplayElement.innerHTML = object;
+	cartDisplayElement.innerHTML = lookupCode;
 	cartDisplayElement.classList.add("cart");
 	trElement.appendChild(cartDisplayElement);
 	trElement.appendChild(deleteBtnElement);
 	trElement.appendChild(document.createElement("br"));
 	tableElement.appendChild(trElement);
-	console.log(tableElement);
+	//console.log(tableElement);
 }
 
-function removeProductList() {
-	var list = document.getElementById("createProductList");
+// function removeProductList() {
+// 	var list = document.getElementById("createProductList");
 
-	let i = 0;
-	while(list.hasChildNodes) {
-		list.removeChild(list.childNodes[i]);
-		i++;
-	}
-}
+// 	let i = 0;
+// 	while(list.hasChildNodes) {
+// 		list.removeChild(list.childNodes[i]);
+// 		i++;
+// 	}
+// }
 
 function deleteProductFromCart(event){
 	const deleteActionElement = event.target;
