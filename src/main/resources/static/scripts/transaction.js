@@ -102,12 +102,19 @@ function addProductToCart(object) {
 	const cartDisplayElement = document.createElement("span");
 	const deleteBtnElement = document.createElement("input");
 	const nextDeleteBtnId = (tableElement.childElementCount +1).toString();
+	const quantityInputElement = document.createElement("input");
+
+	quantityInputElement.setAttribute('id','quantityInput'+ nextDeleteBtnId);
+	deleteBtnElement.setAttribute('type','number');
+	deleteBtnElement.setAttribute('value','1');
+	deleteBtnElement.setAttribute('style', 'float:left');
 
 	deleteBtnElement.setAttribute('id','deleteBtn'+ nextDeleteBtnId);
 	deleteBtnElement.setAttribute('type','button');
 	deleteBtnElement.setAttribute('value','Delete');
 	deleteBtnElement.setAttribute('style', 'float:right');
 	cartDisplayElement.innerHTML = object;
+	cartDisplayElement.setAttribute('style', 'float:center');
 	cartDisplayElement.classList.add("cart");
 	trElement.appendChild(cartDisplayElement);
 	trElement.appendChild(deleteBtnElement);

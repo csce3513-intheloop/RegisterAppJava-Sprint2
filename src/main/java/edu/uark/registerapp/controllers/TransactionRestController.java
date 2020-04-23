@@ -33,9 +33,9 @@ public class TransactionRestController extends BaseRestController {
 				arrayList.add(product.getLookupCode());
 			} 
 			
-			for (int i=0; i < arrayList.size(); i++ ){
-			 	System.out.println("List" +i+ ":  " + arrayList.get(i));
-            }
+			// for (int i=0; i < arrayList.size(); i++ ){
+			//  	System.out.println("List" +i+ ":  " + arrayList.get(i));
+            // }
         }
         return arrayList;
 	}
