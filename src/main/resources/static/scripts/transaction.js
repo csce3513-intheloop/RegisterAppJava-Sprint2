@@ -63,16 +63,23 @@ function createProductList(returnLookupCode) {
 	liElement.addEventListener("click", onListItemClicked);
 	const lookupCodeDisplayElement = document.createElement("Span");
 	const priseDisplayElement = document.createElement("Span");
+	const countDisplayElement = document.createElement("Span");
 	var priceText = document.createTextNode("Price: ")
+	var countText = document.createTextNode("Count: ")
 	if (returnLookupCode != "") {
 		lookupCodeDisplayElement.innerHTML = returnLookupCode.lookupCode;
 		priseDisplayElement.innerHTML = returnLookupCode.price;
+		countDisplayElement.innerHTML = returnLookupCode.count;
 		lookupCodeDisplayElement.classList.add("productLookupCodeDisplay");
 		priseDisplayElement.classList.add("productPriceDisplay");
+		countDisplayElement.classList.add("productCountDisplay");
 		liElement.appendChild(lookupCodeDisplayElement);
 		liElement.appendChild(document.createElement("br"));
 		liElement.appendChild(priceText);
 		liElement.appendChild(priseDisplayElement);
+		liElement.appendChild(document.createElement("br"));
+		liElement.appendChild(countText);
+		liElement.appendChild(countDisplayElement);
 		liElement.appendChild(document.createElement("br"));
 		ulElement.appendChild(liElement);	
 	}
@@ -92,27 +99,40 @@ function onListItemClicked(event) {
 	const unorderedListElement = document.getElementById("createProductList");
 	addProductToCart(getCLickedListItemElement(event.target));
 	unorderedListElement.removeChild(getCLickedListItemElement(event.target));
-	document.getElementById("cart").addEventListener("click",deleteProductFromCart);
+	//document.getElementById("cart").addEventListener("click",deleteProductFromCart);
 
 }
 
 function addProductToCart(clickedListItem) {
 	const lookupCode = clickedListItem.querySelector("span.productLookupCodeDisplay").innerHTML;
 	const price = clickedListItem.querySelector("span.productPriceDisplay").innerHTML;
+	const productCount = clickedListItem.querySelector("span.productCountDisplay").innerHTML;
+	
 	const tableElement = document.getElementById("cart");
 	const trElement = document.createElement("li");
 	const cartDisplayElement = document.createElement("span");
 	const priceDisplayElement = document.createElement("span");
 	const deleteBtnElement = document.createElement("input");
+	const countInput = document.createElement("input");
 	const nextDeleteBtnId = (tableElement.childElementCount +1).toString();
 	var priceText = document.createTextNode("Price: ");
 	var counrText = document.createTextNode("Count: ");
 	var count = document.createTextNode(1);
-	
+
+	countInput.setAttribute('type','number');
+	countInput.setAttribute('value',count);
 	deleteBtnElement.setAttribute('id','deleteBtn'+ nextDeleteBtnId);
 	deleteBtnElement.setAttribute('type','button');
 	deleteBtnElement.setAttribute('value','Delete');
 	deleteBtnElement.setAttribute('style', 'float:right');
+	deleteBtnElement.addEventListener("click",deleteProductFromCart);
+	console.log(productCount);
+	console.log(count);
+	if (count > productCount){
+		count = productCount;
+		alert("The total quantity is "+productCount);
+	}
+
 	cartDisplayElement.innerHTML = lookupCode;
 	priceDisplayElement.innerHTML = price;
 	cartDisplayElement.classList.add("cart");
@@ -122,7 +142,7 @@ function addProductToCart(clickedListItem) {
 	trElement.appendChild(priceDisplayElement);
 	trElement.appendChild(document.createElement("br"));
 	trElement.appendChild(counrText);
-	trElement.appendChild(count);	
+	trElement.appendChild(countInput);	
 	trElement.appendChild(deleteBtnElement);
 	trElement.appendChild(document.createElement("br"));
 	tableElement.appendChild(trElement);
