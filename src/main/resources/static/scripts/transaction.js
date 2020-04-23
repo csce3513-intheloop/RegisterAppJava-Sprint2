@@ -50,7 +50,6 @@ function searchActionClick(event) {
 					document.getElementById("createProductList").innerHTML="";
 					for(var i=0; i < callbackResponse.data.length; i++){						   
 						createProductList(callbackResponse.data[i]);
-						console.log(callbackResponse.data[i]);
 					}							
 				}
 			}
@@ -63,11 +62,17 @@ function createProductList(returnLookupCode) {
 	const liElement = document.createElement("li");
 	liElement.addEventListener("click", onListItemClicked);
 	const lookupCodeDisplayElement = document.createElement("Span");
-
+	const priseDisplayElement = document.createElement("Span");
+	var priceText = document.createTextNode("Price: ")
 	if (returnLookupCode != "") {
-		lookupCodeDisplayElement.innerHTML = returnLookupCode;
+		lookupCodeDisplayElement.innerHTML = returnLookupCode.lookupCode;
+		priseDisplayElement.innerHTML = returnLookupCode.price;
 		lookupCodeDisplayElement.classList.add("productLookupCodeDisplay");
+		priseDisplayElement.classList.add("productPriceDisplay");
 		liElement.appendChild(lookupCodeDisplayElement);
+		liElement.appendChild(document.createElement("br"));
+		liElement.appendChild(priceText);
+		liElement.appendChild(priseDisplayElement);
 		liElement.appendChild(document.createElement("br"));
 		ulElement.appendChild(liElement);	
 	}
@@ -87,29 +92,40 @@ function onListItemClicked(event) {
 	const unorderedListElement = document.getElementById("createProductList");
 	addProductToCart(getCLickedListItemElement(event.target));
 	unorderedListElement.removeChild(getCLickedListItemElement(event.target));
-	document.getElementById("deleteBtn").addEventListener("click",deleteProductFromCart);
+	document.getElementById("cart").addEventListener("click",deleteProductFromCart);
 
 }
 
 function addProductToCart(clickedListItem) {
 	const lookupCode = clickedListItem.querySelector("span.productLookupCodeDisplay").innerHTML;
+	const price = clickedListItem.querySelector("span.productPriceDisplay").innerHTML;
 	const tableElement = document.getElementById("cart");
 	const trElement = document.createElement("li");
 	const cartDisplayElement = document.createElement("span");
+	const priceDisplayElement = document.createElement("span");
 	const deleteBtnElement = document.createElement("input");
 	const nextDeleteBtnId = (tableElement.childElementCount +1).toString();
-
+	var priceText = document.createTextNode("Price: ");
+	var counrText = document.createTextNode("Count: ");
+	var count = document.createTextNode(1);
+	
 	deleteBtnElement.setAttribute('id','deleteBtn'+ nextDeleteBtnId);
 	deleteBtnElement.setAttribute('type','button');
 	deleteBtnElement.setAttribute('value','Delete');
 	deleteBtnElement.setAttribute('style', 'float:right');
 	cartDisplayElement.innerHTML = lookupCode;
+	priceDisplayElement.innerHTML = price;
 	cartDisplayElement.classList.add("cart");
 	trElement.appendChild(cartDisplayElement);
+	trElement.appendChild(document.createElement("br"));
+	trElement.appendChild(priceText);
+	trElement.appendChild(priceDisplayElement);
+	trElement.appendChild(document.createElement("br"));
+	trElement.appendChild(counrText);
+	trElement.appendChild(count);	
 	trElement.appendChild(deleteBtnElement);
 	trElement.appendChild(document.createElement("br"));
 	tableElement.appendChild(trElement);
-	//console.log(tableElement);
 }
 
 // function removeProductList() {
@@ -140,8 +156,3 @@ function setLookupCode(lookupCode) {
 function getLookupCodeElement() {
 	return document.getElementById("lookupCode");
 }
-
-//transactionId,
-//productId,
-//quantity,
-//price

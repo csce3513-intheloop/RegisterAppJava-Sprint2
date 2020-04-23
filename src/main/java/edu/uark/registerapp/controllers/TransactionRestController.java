@@ -21,26 +21,22 @@ import edu.uark.registerapp.models.api.Product;
 public class TransactionRestController extends BaseRestController {
 
 	@RequestMapping( method = RequestMethod.GET)
-	public ArrayList<String> getpartialLookupCode(
+	public ArrayList<Product> getpartialLookupCode(
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request,
 		final HttpServletResponse response
 	) {
    
-        ArrayList<String> arrayList = new ArrayList<>();        
+        ArrayList<Product> arrayList = new ArrayList<>();        
 		if (queryParameters.get("lookupCode") != null){
 			for (Product product : this.productByPartialLookupCodeQuery.setPartialLookupCode(queryParameters.get("lookupCode")).execute()){
-				arrayList.add(product.getLookupCode());
+				arrayList.add(product);
 			} 
-			
-			for (int i=0; i < arrayList.size(); i++ ){
-			 	System.out.println("List" +i+ ":  " + arrayList.get(i));
-            }
-        }
+		}
         return arrayList;
 	}
 
 	// Properties
 	@Autowired
-    private ProductByPartialLookupCodeQuery productByPartialLookupCodeQuery;
+	private ProductByPartialLookupCodeQuery productByPartialLookupCodeQuery;
 }
