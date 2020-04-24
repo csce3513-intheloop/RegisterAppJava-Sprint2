@@ -119,6 +119,13 @@ function addProductToCart(clickedListItem) {
 	const countInput = document.createElement("input");
 	const nextDeleteBtnId = (tableElement.childElementCount +1).toString();
 
+	const quantityInputElement = document.createElement("input");
+
+	quantityInputElement.setAttribute('id','quantityInput'+ nextDeleteBtnId);
+	deleteBtnElement.setAttribute('type','number');
+	deleteBtnElement.setAttribute('value','1');
+	deleteBtnElement.setAttribute('style', 'float:left');
+
 	priceDisplayElement.setAttribute("id","getPrice");
 	countInput.setAttribute("id","countIn");
 	countInput.setAttribute("type","number");
@@ -127,6 +134,7 @@ function addProductToCart(clickedListItem) {
 	deleteBtnElement.setAttribute('type','button');
 	deleteBtnElement.setAttribute('value','Delete');
 	deleteBtnElement.setAttribute('style', 'float:right');
+
 	deleteBtnElement.addEventListener("click",deleteProductFromCart);
 
 	cartDisplayElement.innerHTML = lookupCode;

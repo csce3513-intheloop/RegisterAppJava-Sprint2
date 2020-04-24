@@ -32,7 +32,11 @@ public class TransactionRestController extends BaseRestController {
 			for (Product product : this.productByPartialLookupCodeQuery.setPartialLookupCode(queryParameters.get("lookupCode")).execute()){
 				arrayList.add(product);
 			} 
-		}
+			
+			// for (int i=0; i < arrayList.size(); i++ ){
+			//  	System.out.println("List" +i+ ":  " + arrayList.get(i));
+            // }
+        }
         return arrayList;
 	}
 
