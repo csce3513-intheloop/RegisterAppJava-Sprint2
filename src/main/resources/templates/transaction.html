@@ -33,17 +33,20 @@
             <div class="searchResultWrapper" id="searchResultWrapper" >
                 <ul id="createProductList" class="lookUpCode" style="list-style-type:none;">
                 </ul>
-            </div>
-            
+            </div>            
         </div>
 
         <div id="cartObject" class="searchResultWrapper">
             <h4>Shopping Cart</h4>
             <ul id="cart" class="lookUpCode">
-            </ul>
+            </ul><br>
+
+            <button onclick="totalProduct()">Calculate Total</button><br>
+            <div id="total"></div><br> 
             <a class="button">Ring Up</a>
             <a href="/mainMenu/" class="button">Cancel Transaction</a>
         </div>
+
         <div class="summary">
             <h4>Shopping Cart Summary</h4>
             <ul id="transactionListing" class="transaction">

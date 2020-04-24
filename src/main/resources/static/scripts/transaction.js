@@ -66,6 +66,7 @@ function createProductList(returnLookupCode) {
 	const countDisplayElement = document.createElement("Span");
 	var priceText = document.createTextNode("Price: ")
 	var countText = document.createTextNode("Count: ")
+
 	if (returnLookupCode != "") {
 		lookupCodeDisplayElement.innerHTML = returnLookupCode.lookupCode;
 		priseDisplayElement.innerHTML = returnLookupCode.price;
@@ -99,15 +100,17 @@ function onListItemClicked(event) {
 	const unorderedListElement = document.getElementById("createProductList");
 	addProductToCart(getCLickedListItemElement(event.target));
 	unorderedListElement.removeChild(getCLickedListItemElement(event.target));
-	//document.getElementById("cart").addEventListener("click",deleteProductFromCart);
-
 }
 
 function addProductToCart(clickedListItem) {
+
 	const lookupCode = clickedListItem.querySelector("span.productLookupCodeDisplay").innerHTML;
 	const price = clickedListItem.querySelector("span.productPriceDisplay").innerHTML;
 	const productCount = clickedListItem.querySelector("span.productCountDisplay").innerHTML;
-	
+	var priceText = document.createTextNode("Price: ");
+	var counrText = document.createTextNode("Count: ");
+	var count = 1;
+
 	const tableElement = document.getElementById("cart");
 	const trElement = document.createElement("li");
 	const cartDisplayElement = document.createElement("span");
@@ -115,48 +118,44 @@ function addProductToCart(clickedListItem) {
 	const deleteBtnElement = document.createElement("input");
 	const countInput = document.createElement("input");
 	const nextDeleteBtnId = (tableElement.childElementCount +1).toString();
-	var priceText = document.createTextNode("Price: ");
-	var counrText = document.createTextNode("Count: ");
-	var count = document.createTextNode(1);
 
-	countInput.setAttribute('type','number');
+	priceDisplayElement.setAttribute("id","getPrice");
+	countInput.setAttribute("id","countIn");
+	countInput.setAttribute("type","number");
 	countInput.setAttribute('value',count);
 	deleteBtnElement.setAttribute('id','deleteBtn'+ nextDeleteBtnId);
 	deleteBtnElement.setAttribute('type','button');
 	deleteBtnElement.setAttribute('value','Delete');
 	deleteBtnElement.setAttribute('style', 'float:right');
 	deleteBtnElement.addEventListener("click",deleteProductFromCart);
-	console.log(productCount);
-	console.log(count);
-	if (count > productCount){
-		count = productCount;
-		alert("The total quantity is "+productCount);
-	}
 
 	cartDisplayElement.innerHTML = lookupCode;
 	priceDisplayElement.innerHTML = price;
+
 	cartDisplayElement.classList.add("cart");
 	trElement.appendChild(cartDisplayElement);
+	trElement.appendChild(document.createTextNode("     "));
+	trElement.appendChild(deleteBtnElement);
 	trElement.appendChild(document.createElement("br"));
 	trElement.appendChild(priceText);
 	trElement.appendChild(priceDisplayElement);
 	trElement.appendChild(document.createElement("br"));
 	trElement.appendChild(counrText);
 	trElement.appendChild(countInput);	
-	trElement.appendChild(deleteBtnElement);
 	trElement.appendChild(document.createElement("br"));
 	tableElement.appendChild(trElement);
 }
 
-// function removeProductList() {
-// 	var list = document.getElementById("createProductList");
+function totalProduct(){
+	var count = document.getElementById("countIn").value;
+	var price = document.getElementById("getPrice").innerText;
+	var msg = "Total Count: " + count + " Total Price: " + price * count;
 
-// 	let i = 0;
-// 	while(list.hasChildNodes) {
-// 		list.removeChild(list.childNodes[i]);
-// 		i++;
-// 	}
-// }
+	if(count!=null && price!=null){
+		document.getElementById("total").innerHTML = msg;
+	}	
+}
+
 
 function deleteProductFromCart(event){
 	const deleteActionElement = event.target;
