@@ -149,21 +149,33 @@ function addProductToCart(clickedListItem) {
 	trElement.appendChild(priceDisplayElement);
 	trElement.appendChild(document.createElement("br"));
 	trElement.appendChild(counrText);
-	trElement.appendChild(countInput);	
+	trElement.appendChild(countInput);
 	trElement.appendChild(document.createElement("br"));
 	tableElement.appendChild(trElement);
 }
 
 function totalProduct(){
-	var count = document.getElementById("countIn").value;
-	var price = document.getElementById("getPrice").innerText;
-	var msg = "Total Count: " + count + " Total Price: " + price * count;
+	var count = document.querySelectorAll("[id^=countIn]");
+	var productCount = 0;
+	var totalCount = 0;
+	var price=document.querySelectorAll("[id^=getPrice]");
+	var productPrice = 0;
+	var totalPrice = 0;
+	var totalArray = document.getElementById("cart").querySelectorAll("li"); 
+
+	for (var i=0; i<totalArray.length; i++){
+		productCount = count[i].value;
+		productPrice = parseInt(productCount) * parseInt(price[i].innerHTML);
+		totalCount = parseInt(totalCount) + parseInt(productCount);
+		totalPrice = totalPrice + productPrice;
+	}
+
+	var msg = "Total Count: " + totalCount + " Total Price: " + totalPrice;
 
 	if(count!=null && price!=null){
 		document.getElementById("total").innerHTML = msg;
 	}	
 }
-
 
 function deleteProductFromCart(event){
 	const deleteActionElement = event.target;
@@ -171,7 +183,6 @@ function deleteProductFromCart(event){
 	document.getElementById("cart").removeChild(closestElement);	
 
 }
-
 
 // Getters and setters
 function getLookupCode() {
