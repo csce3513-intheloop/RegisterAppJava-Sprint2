@@ -49,8 +49,8 @@
 
         <div class="summary">
             <h4>Shopping Cart Summary</h4>
-            <ul id="transactionListing" class="transaction">
-				<li th:each="product : ${products}">
+            <ul id="transaction" class="transactions">
+				<li th:each="transaction : ${transactions}">
 					<input type="hidden" name="transactionId" th:value="${transaction.id}" />
                     <span class="transactionProductNameDisplay" th:text="${transaction.productName}">lookupCode</span>
                     &emsp;&emsp;&emsp;<span class="productPricePricetDisplay" th:text="${transaction.productPrice}">0.00</span>
