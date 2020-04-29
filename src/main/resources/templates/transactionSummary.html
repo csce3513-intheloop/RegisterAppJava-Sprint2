@@ -1,6 +1,7 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
+<<<<<<< HEAD
     <title>Register - Transaction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -35,6 +36,42 @@
         <img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
     </div>
 
+=======
+	<title>Register - Transation Summary</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<link rel="stylesheet" type="text/css" href="/styles/master.css">
+	<link rel="stylesheet" type="text/css" href="/styles/productListing.css">
+
+	<script type="text/javascript" src="/scripts/master.js" defer></script>
+	<script type="text/javascript" src="/scripts/productListing.js" defer></script>
+</head>
+
+<body>
+	<div class="header">
+		<h1 class="primary-message">Transaction Summary</h1>
+    </div>
+    
+    <div id="main" class="main">
+		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+        </div>
+
+        <div class="summary">
+            <h4>Shopping Cart Summary</h4>
+            <ul id="transaction" class="transactions">
+				<li th:each="transaction : ${transactions}">
+					<input type="hidden" name="transactionId" th:value="${transaction.id}" />
+                    <span class="transactionProductNameDisplay" th:text="${transaction.productName}">lookupCode</span>
+                    &emsp;&emsp;&emsp;<span class="productPricePricetDisplay" th:text="${transaction.productPrice}">0.00</span>
+					&emsp;&emsp;&emsp;<span class="productQuantityDisplay" th:text="${transaction.productQuantity}">0</span>
+                    <p>Total &emsp;&nbsp;<span class="transactionTotalPrice" th:text="${transaction.totalPrice}">0.00</span>
+                    &emsp;&emsp;&emsp;&emsp;<span class="transactionTotalCountDisplay" th:text="${transaction.totalCount}">0</span></p>
+				</li>
+			</ul>
+        </div>
+    </div>
+>>>>>>> 40363f405bc5442ae069d14b505a621998bbf8e5
 </body>
 
 </html>
