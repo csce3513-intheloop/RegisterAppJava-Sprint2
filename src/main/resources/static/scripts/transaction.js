@@ -174,7 +174,11 @@ function totalProduct(){
 
 	if(count!=null && price!=null){
 		document.getElementById("total").innerHTML = msg;
-	}	
+	}
+	document.getElementById("header").innerHTML = "<h1 class=\"primary-message\">Transaction Summary</h1>";
+	document.getElementById("searchArea").remove();	
+	document.getElementById("cartObject").remove();	
+	document.getElementById("home").setAttribute("style", "visibility:visible");	
 }
 
 function deleteProductFromCart(event){

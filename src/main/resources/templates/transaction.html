@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="header">
+    <div class="header" id="header">
         <h1 class="primary-message">New Transaction</h1>
     </div>
 
@@ -40,12 +40,17 @@
             <h4>Shopping Cart</h4>
             <ul id="cart" class="lookUpCode">
             </ul><br>
-
-            <button onclick="totalProduct()">Calculate Total</button><br>
-            <div id="total"></div><br> 
-            <a href="/transactionSummary/"class="button">Ring Up</a>
+            <a onclick="totalProduct()" class="button">Ring Up</a>
             <a href="/mainMenu/" class="button">Cancel Transaction</a>
         </div>
+
+        <div id="xactionSummary" style='align-content: center;'>
+            <div id="total"></div><br> 
+            <div class="button" id='home' style='visibility: hidden;'>
+                <a href="/mainMenu/" class="button">Home</a>
+            </div>
+        </div>
+
     </div>
 
     <div class="footer">
