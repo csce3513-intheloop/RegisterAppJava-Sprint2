@@ -127,6 +127,7 @@ function addProductToCart(clickedListItem) {
 	deleteBtnElement.setAttribute('style', 'float:left');
 
 	priceDisplayElement.setAttribute("id","getPrice");
+	cartDisplayElement.setAttribute("id", "getLookUpCode");
 	countInput.setAttribute("id","countIn");
 	countInput.setAttribute("type","number");
 	countInput.setAttribute('value',count);
@@ -161,13 +162,21 @@ function totalProduct(){
 	var price=document.querySelectorAll("[id^=getPrice]");
 	var productPrice = 0;
 	var totalPrice = 0;
-	var totalArray = document.getElementById("cart").querySelectorAll("li"); 
+	var lookUpCode =document.querySelectorAll("[id^=getLookUpCode]"); 
+	var totalArray = document.getElementById("cart").querySelectorAll("li");
+	var cart = [];
 
 	for (var i=0; i<totalArray.length; i++){
+
 		productCount = count[i].value;
+		LUC = lookUpCode[i].innerHTML;
 		productPrice = parseInt(productCount) * parseInt(price[i].innerHTML);
 		totalCount = parseInt(totalCount) + parseInt(productCount);
 		totalPrice = totalPrice + productPrice;
+
+		var product = {"LookUpCode": LUC, "Price": productPrice, "Count": productCount};
+
+		cart.push(product);
 	}
 
 	var msg = "Total Count: " + totalCount + " Total Price: " + totalPrice;
@@ -175,6 +184,11 @@ function totalProduct(){
 	if(count!=null && price!=null){
 		document.getElementById("total").innerHTML = msg;
 	}
+
+	var str = JSON.stringify(cart);
+
+	document.getElementById('summaryDisplay').innerHTML = str;
+
 	document.getElementById("header").innerHTML = "<h1 class=\"primary-message\">Transaction Summary</h1>";
 	document.getElementById("searchArea").remove();	
 	document.getElementById("cartObject").remove();	
