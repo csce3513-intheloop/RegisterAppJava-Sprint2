@@ -173,27 +173,57 @@ function totalProduct(){
 		productPrice = parseInt(productCount) * parseInt(price[i].innerHTML);
 		totalCount = parseInt(totalCount) + parseInt(productCount);
 		totalPrice = totalPrice + productPrice;
-
+		
 		var product = {"LookUpCode": LUC, "Price": productPrice, "Count": productCount};
-
+		
 		cart.push(product);
-	}
+		showProductsSummary(cart[i]);
+	}	
+	
+	var msg = "Transaction Total Count: " + totalCount +"<br>"+ " Transaction Total Price: " + totalPrice;
 
-	var msg = "Total Count: " + totalCount + " Total Price: " + totalPrice;
 
 	if(count!=null && price!=null){
 		document.getElementById("total").innerHTML = msg;
 	}
+	
+	//var str = JSON.stringify(cart);
 
-	var str = JSON.stringify(cart);
-
-	document.getElementById('summaryDisplay').innerHTML = str;
+	//document.getElementById('summaryDisplay').innerHTML = str;
 
 	document.getElementById("header").innerHTML = "<h1 class=\"primary-message\">Transaction Summary</h1>";
 	document.getElementById("searchArea").remove();	
 	document.getElementById("cartObject").remove();	
 	document.getElementById("home").setAttribute("style", "visibility:visible");	
 }
+function showProductsSummary(cart) {
+	const ulElement = document.getElementById("summaryTable");
+	const liElement = document.createElement("li");
+	const lookupCodeDisplayElement = document.createElement("span");
+	const priseDisplayElement = document.createElement("span");
+	const countDisplayElement = document.createElement("span");
+	var priceText = document.createTextNode("Total price:  ");
+	var countText = document.createTextNode("Total count:  ");
+
+	liElement.setAttribute('style', 'text-align:center');
+		lookupCodeDisplayElement.innerHTML = cart["LookUpCode"];
+		priseDisplayElement.innerHTML = cart["Price"];
+		countDisplayElement.innerHTML = cart["Count"];
+		lookupCodeDisplayElement.classList.add("summaryTable");
+		priseDisplayElement.classList.add("summaryTable");
+		countDisplayElement.classList.add("summaryTable");
+		liElement.appendChild(lookupCodeDisplayElement);
+		liElement.appendChild(document.createElement("br"));
+		liElement.appendChild(priceText);
+		liElement.appendChild(priseDisplayElement);
+		liElement.appendChild(document.createElement("br"));
+		liElement.appendChild(countText);
+		liElement.appendChild(countDisplayElement);
+		liElement.appendChild(document.createElement("br"));
+		ulElement.appendChild(liElement);
+
+
+};
 
 function deleteProductFromCart(event){
 	const deleteActionElement = event.target;
